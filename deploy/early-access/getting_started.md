@@ -3,25 +3,37 @@ title: "Getting started"
 description: "Step-by-step guide to creating and configuring your first Deno Deploy Early Access application, including organization setup, build configuration, environment variables, and deployment monitoring."
 ---
 
-:::caution
+:::info
 
-Deno Deploy EA is in private access. You must be explicitly granted permission
-to use it, otherwise you will be unable to visit the new dashboard.
+You are viewing the documentation for Deno Deploy<sup>EA</sup>. Looking for
+Deploy Classic documentation? [View it here](/deploy/).
+
+:::
+
+:::note
+
+Deno Deploy<sup>EA</sup> is in private beta. To use Deno Deploy
+<sup>EA</sup> you must join the Early Access program from the
+[Deploy Classic account settings page](https://dash.deno.com/account#early-access).
+
+After joining the Early Access program, you may still not immediately have
+access to Deno Deploy<sup>EA</sup> as we are rolling out access in waves.
 
 :::
 
 ## Create an organization
 
-To get started with Deno Deploy EA, you must first create a Deno Deploy EA
-organization. You can do this by visiting [app.deno.com](http://app.deno.com).
+To get started with Deno Deploy<sup>EA</sup>, you must first create a Deno
+Deploy<sup>EA</sup> organization. You can do this by visiting
+[app.deno.com](http://app.deno.com).
 
-Upon first visiting the dashboard, you’ll be greeted by the Deno Deploy EA
-organization creation screen:
+Upon first visiting the dashboard, you’ll be greeted by the Deno Deploy
+<sup>EA</sup> organization creation screen:
 
-![The Deno Deploy EA organization creation screen.](./images/create_org.png)
+![The Deno Deploy<sup>EA</sup> organization creation screen.](./images/create_org.png)
 
 You can not currently create an organization that has the same slug as any
-project name in Deno Deploy Classic.
+project name in Deploy Classic.
 
 Currently, the organization name and organization slug can not be changed after
 organization creation.
@@ -52,15 +64,15 @@ If your repository does not show up, use the `Add another GitHub account` or
 `Configure GitHub App permissions` buttons in the user/org, or repo dropdowns to
 grant the Deno Deploy GitHub app permission to deploy your repositories.
 
-> ⏳ We do not yet support deploying mono-repos (for examples, repos where the
+> ⏳ We do not yet support deploying mono-repos (for example, repos where the
 > actual application lives entirely in a subdirectory).
 
 ## Configure your app
 
-After selecting a GitHub repository, Deno Deploy EA will automatically attempt
-to detect the kind of application you are deploying and determine appropriate
-build configuration. You can see the detected configuration in the `App Config`
-box on the top right.
+After selecting a GitHub repository, Deno Deploy<sup>EA</sup> will automatically
+attempt to detect the kind of application you are deploying and determine
+appropriate build configuration. You can see the detected configuration in the
+`App Config` box on the top right.
 
 ![Screenshot of Deploy application configuration screen](./images/app_config.png)
 
@@ -95,9 +107,9 @@ you can leave this field empty.
 
 ### Runtime configuration
 
-For most frameworks there are no options to configure here, as Deno Deploy EA
-will figure out the ideal runtime configuration for the app based on the
-framework preset. When a framework is not configured, you can choose here
+For most frameworks there are no options to configure here, as Deno Deploy
+<sup>EA</sup> will figure out the ideal runtime configuration for the app based
+on the framework preset. When a framework is not configured, you can choose here
 whether the app is a `Dynamic` app that needs to execute code server side for
 every request, such as an API server, server-side rendered application, etc., or
 a `Static` app that consists only of a set of static files that need to be
@@ -106,9 +118,9 @@ hosted.
 ### Dynamic Entrypoint
 
 The JavaScript or TypeScript file that should be executed to start the
-application. This is the file path that you would pass to`deno
-run`locally to
-start the app. The path has to be relative to the working directory.
+application. This is the file path that you would pass locally to `deno
+run` or
+`node` to start the app. The path has to be relative to the working directory.
 
 ### Dynamic arguments
 
@@ -197,7 +209,55 @@ URLs shown in the timelines list.
 ## Monitor your application
 
 After visiting your application, you can view telemetry about your application
-in the form of the logs and traces available in our observability panels:
+in the form of the logs and traces available in our observability panels. You
+can visit these pages by clicking the respective buttons in the left sidebar.
 
-- observability
-- settings
+### Logs
+
+![Screenshot of the Logs page](./images/logs.png)
+
+The logs page shows all recent logs in the project. By default logs from all
+contexts (production and development) are shown, but using the filter button and
+search bar at the top, the shown logs can be restricted. For example, to filter
+to only production logs, add `context:production` to the search bar. To only
+show logs from a certain revision, use `revision:<id>` etc.
+
+You can also use full text search in the search bar. The full text search fill
+filter down the log entries to only those containing the text written,
+case-insensitively.
+
+By default logs from the last hour are shown. The time picker in the top right
+can be used to adjust the time frame that logs are shown for. The time zone of
+the timestamps shown is the time zone set in the time picker.
+
+The "view trace" button on the right of a log line shows up if a log line is
+correlated with a trace. This happens when a log line occurs within an active
+trace. Clicking this button will open the respective trace as an overlay.
+
+### Traces
+
+![Screenshot of the Traces page](./images/traces.png)
+
+The traces page shows all recent traces in the project. By default traces from
+all contexts (production and development) are shown, but using the filter button
+and search bar at the top, the shown traces can be restricted. For example, to
+filter to only production traces, add `context:production` to the search bar. To
+only show traces from a certain revision, use `revision:<id>` etc.
+
+All traces that contain an incoming HTTP request are shown in the list. The text
+shown for each trace is the path of the request, and the duration of the trace
+in milliseconds.
+
+Clicking on a trace will open the trace view, which shows the full trace
+including all spans and logs that are part of the trace.
+
+![Screenshot of the Trace view](./images/trace.png)
+
+For each span in the trace you can see the duration of the span, the name of the
+span, the start and end time, and the recorded attributes. By clicking on a span
+in the timeline, the details of that span will be shown in the summary panel at
+the bottom.
+
+The logs that are emitted as part of a given span are shown in the logs tab at
+the bottom. Changing the selected span will update which logs are shown in this
+panel.

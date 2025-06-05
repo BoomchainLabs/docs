@@ -114,7 +114,7 @@ data:[<media type>][;base64],<data>
 
 For JavaScript modules, use `application/javascript` as the media type.
 TypeScript is also supported with `application/typescript`. This feature is
-particularly useful for testing modules in isolation and creeating mock modules
+particularly useful for testing modules in isolation and creating mock modules
 during tests.
 
 ## Importing third party modules and libraries
@@ -309,7 +309,8 @@ HTTPS imports are useful if you have a small, often single file, Deno project
 that doesn't require any other configuration. With HTTPS imports, you can avoid
 having a `deno.json` file at all. It is **not** advised to use this style of
 import in larger applications however, as you may end up with version conflicts
-(where different files use different version specifiers).
+(where different files use different version specifiers). HTTP imports are not
+supported by `deno add`/`deno install` commands.
 
 :::info
 
@@ -401,7 +402,7 @@ Limitations:
 
 ### Overriding HTTPS imports
 
-Deno also allows overriding HTTPS imports through the `importMap` field in
+Deno also allows overriding HTTPS imports through the `scopes` field in
 `deno.json`. This feature is particularly useful when substituting a remote
 dependency with a local patched version for debugging or temporary fixes.
 
@@ -426,7 +427,7 @@ Key points:
   to alternative paths.
 - This is commonly used to override remote dependencies with local files for
   testing or development purposes.
-- Import maps apply only to the root of your project. Nested import maps within
+- Scopes apply only to the root of your project. Nested scopes within
   dependencies are ignored.
 
 ## Vendoring remote modules
