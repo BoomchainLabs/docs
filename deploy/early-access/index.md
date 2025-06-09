@@ -27,9 +27,6 @@ Deno Deploy<sup>EA</sup> is in private beta. To use Deno Deploy
 <sup>EA</sup> you must join the Early Access program from the
 [Deploy Classic account settings page](https://dash.deno.com/account#early-access).
 
-After joining the Early Access program, you may still not immediately have
-access to Deno Deploy<sup>EA</sup> as we are rolling out access in waves.
-
 :::
 
 Deno Deploy<sup>EA</sup> comes with a new dashboard at
@@ -82,7 +79,7 @@ Deploy.
 
 ## How to access EA
 
-To begin using Deno Deploy Early Access:
+To begin using Deno Deploy<sup>EA</sup>:
 
 1. Visit [app.deno.com](https://app.deno.com) to access the new dashboard
 2. Create a new Deno Deploy<sup>EA</sup> organization

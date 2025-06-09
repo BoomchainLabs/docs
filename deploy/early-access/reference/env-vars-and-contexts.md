@@ -1,5 +1,6 @@
 ---
 title: Environment Variables and Contexts
+description: "Guide to managing environment variables and contexts in Deno Deploy Early Access, including variable types, creation, editing, and accessing them in your code."
 ---
 
 :::info
@@ -42,6 +43,13 @@ environment variables and secrets. By default, there are two contexts:
 Need more contexts? Please reach out to [support](../support).
 
 :::
+
+Additionally, there is also a **Build** context, which is used during the build
+process of an application. Environment variables set in the Build context are
+not available in the Production or Development contexts, and vice versa. This
+means that you can use different environment variables for the build process
+than you use in your application code. This is useful for build-time
+configuration, such as build flags or build-time API keys.
 
 Inside of an application or organization, you can not have multiple environment
 variables with the same name that apply to the same context. It is possible to
